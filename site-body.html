@@ -1,0 +1,535 @@
+<title>Sidera Visus</title>
+<meta name="description" content="Sidera Visus — sound art, soundscape composition and experimental electronic music by Néstor Paredes Ulloa, southern Chile.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Antonio:wght@300;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a field notebook printed on grey paper — condensed caps headings, serif prose,
+   B&W field photographs, one red record disc as the only colour event. */
+:root{
+  --paper:#e3e2de;        /* portfolio grey, faint cool bias */
+  --paper-2:#d6d5d0;      /* recessed panels */
+  --ink:#151515;
+  --ink-soft:#4a4a47;
+  --rule:#b9b8b2;
+  --signal:#c4321f;       /* the Ecos del Agua record label */
+  --signal-ink:#f4efe9;
+  --display:"Antonio","Oswald","Arial Narrow",Impact,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --wrap:min(1180px,100%);
+  --measure:64ch;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#141414;--paper-2:#1d1d1c;--ink:#e4e2dc;--ink-soft:#a5a39c;--rule:#3a3a37;--signal:#d9442e;--signal-ink:#f7f2ec;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#141414;--paper-2:#1d1d1c;--ink:#e4e2dc;--ink-soft:#a5a39c;--rule:#3a3a37;--signal:#d9442e;--signal-ink:#f7f2ec;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:1.075rem;line-height:1.6;margin:0;padding-inline:clamp(16px,4vw,48px);padding-block:0;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--signal)}
+:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.01em;line-height:.98;text-wrap:balance;margin:0}
+h2{font-size:clamp(2.2rem,5.2vw,3.6rem)}
+h3{font-size:1.45rem;letter-spacing:.03em}
+p{margin:0}
+.label{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.prose{display:grid;gap:1.05em;max-width:var(--measure)}
+.prose em{font-style:italic}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--paper);border-bottom:1px solid var(--rule);margin-inline:calc(-1*clamp(16px,4vw,48px));padding:.7rem clamp(16px,4vw,48px)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.mark{font-family:var(--display);font-weight:700;font-size:1.15rem;letter-spacing:.14em;text-decoration:none}
+.nav ul{display:flex;gap:clamp(.8rem,2.4vw,1.8rem);list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.nav ul a{font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:.92rem;text-decoration:none}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,3.5rem);padding-block:clamp(2.2rem,6vw,4.5rem) 2rem;align-items:end}
+.hero-title{font-size:clamp(3.6rem,11.5vw,8.6rem);font-weight:500;letter-spacing:.06em;line-height:.9}
+.hero-title .lam{font-weight:300}
+.hero-name{font-family:var(--display);text-transform:uppercase;letter-spacing:.2em;font-size:clamp(1rem,2vw,1.3rem);margin-top:.9rem}
+.disciplines{list-style:none;padding:0;margin:2rem 0 0;font-family:var(--display);text-transform:uppercase;font-size:clamp(1.5rem,3.4vw,2.4rem);line-height:1.04;font-weight:300}
+.hero-fig{position:relative;margin:0}
+.hero-fig img{filter:grayscale(1) contrast(1.05);width:100%;aspect-ratio:3/2;object-fit:cover}
+.hero-fig figcaption{margin-top:.55rem;padding-right:clamp(7rem,15vw,9.5rem)}
+.disc{position:absolute;right:-14px;bottom:-34px;width:clamp(110px,15vw,150px);aspect-ratio:1;border-radius:50%;background:var(--signal);color:var(--signal-ink);display:grid;place-items:center;text-align:center;text-decoration:none;font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;font-size:.82rem;line-height:1.15;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+.disc::before{content:"";position:absolute;width:10px;height:10px;border-radius:50%;background:var(--paper);top:50%;left:50%;transform:translate(-50%,-50%)}
+.disc span{position:relative;display:block;padding:0 .9rem}
+.disc span b{display:block;font-weight:700;font-size:1.05rem;margin-bottom:1.6rem}
+.disc:hover{color:var(--signal-ink);transform:scale(1.03)}
+.disc{transition:transform .25s ease}
+
+/* layer strip */
+.layers{margin-top:3.2rem;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);display:grid;grid-template-columns:11rem minmax(0,1fr)}
+.layers-key{display:grid;grid-auto-rows:1fr;border-right:1px solid var(--rule)}
+.layers-key div{padding:.35rem .6rem .35rem 0;display:flex;flex-direction:column;justify-content:center;border-bottom:1px dotted var(--rule)}
+.layers-key div:last-child{border-bottom:0}
+.layers-key b{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.06em;font-size:.95rem;line-height:1.1}
+.layers-key small{font-family:var(--mono);font-size:.66rem;color:var(--ink-soft);letter-spacing:.04em}
+.layers canvas{width:100%;height:100%;min-height:200px;display:block}
+.layers-cap{margin-top:.6rem}
+
+/* sections */
+section{padding-block:clamp(3.5rem,8vw,6rem);border-top:1px solid var(--rule)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(1.2rem,4vw,3rem);align-items:start}
+.sec-head .label{margin-bottom:.8rem;display:block}
+.stack{display:grid;gap:clamp(2rem,5vw,3.5rem)}
+
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,3rem);align-items:start}
+.figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+.figs figure{margin:0}
+.figs img{width:100%;aspect-ratio:1;object-fit:cover}
+figcaption{font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;color:var(--ink-soft);margin-top:.4rem;line-height:1.4}
+.bw img{filter:grayscale(1)}
+
+.thinkers{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.thinkers li{display:grid;grid-template-columns:12rem minmax(0,1fr);gap:1rem;padding:.9rem 0;border-top:1px solid var(--rule)}
+.thinkers li:last-child{border-bottom:1px solid var(--rule)}
+.thinkers b{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.05em;font-size:1.05rem;line-height:1.2}
+.thinkers b small{display:block;font-family:var(--mono);font-weight:400;text-transform:none;font-size:.7rem;color:var(--ink-soft);letter-spacing:.03em;margin-top:.2rem}
+
+/* Ecos del Agua */
+.quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.35rem,2.6vw,1.9rem);line-height:1.35;max-width:34ch;text-wrap:pretty}
+.quote cite{display:block;margin-top:.9rem;font-style:normal}
+.places{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--ink)}
+.places div{padding:1rem 1.1rem 1.2rem 0;border-bottom:1px solid var(--rule);display:grid;gap:.35rem;align-content:start}
+.places div:not(:nth-child(3n+1)){padding-left:1.1rem;border-left:1px solid var(--rule)}
+.places p{font-size:.98rem;color:var(--ink-soft)}
+.steps{list-style:none;padding:0;margin:0;counter-reset:s;display:grid;gap:0}
+.steps li{counter-increment:s;display:grid;grid-template-columns:4.2rem minmax(0,1fr) minmax(0,15rem);gap:1.2rem;padding:1.5rem 0;border-top:1px solid var(--rule);align-items:start}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--display);font-size:2.6rem;line-height:.85;font-weight:300;color:var(--signal)}
+.steps h3{margin-bottom:.55rem}
+.steps .spec{font-family:var(--mono);font-size:.74rem;line-height:1.55;color:var(--ink-soft);border-left:1px solid var(--rule);padding-left:.9rem}
+.steps .spec span{display:block}
+.speakers{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.9rem}
+.speakers span{font-family:var(--mono);font-size:.72rem;border:1px solid var(--rule);padding:.25rem .55rem;border-radius:2px}
+.strip{margin-top:1rem}
+.strip img{width:100%;height:auto;border:1px solid var(--rule)}
+.comps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.comps div{background:var(--paper);padding:1rem .9rem 1.1rem;display:grid;gap:.4rem;align-content:start}
+.comps .num{font-family:var(--display);font-size:1.9rem;font-weight:300;line-height:1}
+.comps p{font-size:.93rem;line-height:1.45}
+.mosaic{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:.8rem}
+.mosaic figure{margin:0;min-width:0}
+.mosaic img{width:100%;height:100%;object-fit:cover}
+.mosaic .big{grid-row:span 2}
+.mosaic .big img{aspect-ratio:auto;height:100%}
+.mosaic figure:not(.big) img{aspect-ratio:1}
+.aside-note{background:var(--paper-2);padding:1.3rem 1.4rem;display:grid;gap:.7rem}
+
+/* releases */
+.releases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1rem,3vw,2rem)}
+.rel{display:grid;gap:.6rem;align-content:start}
+.rel img{width:100%;aspect-ratio:1;object-fit:cover}
+.rel .meta{display:flex;justify-content:space-between;gap:.5rem;font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:.4rem;font-variant-numeric:tabular-nums}
+.rel p{font-size:.98rem}
+
+.selections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1rem,3vw,2rem)}
+.sel{border-top:3px solid var(--ink);padding-top:1rem;display:grid;gap:.5rem;align-content:start}
+.sel .where{font-family:var(--display);text-transform:uppercase;letter-spacing:.05em;font-size:1.7rem;line-height:1}
+
+/* live */
+.timeline{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.tl-wrap{overflow-x:auto}
+.timeline th{font-family:var(--mono);font-weight:500;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;text-align:left;color:var(--ink-soft);padding:.5rem .8rem .5rem 0;border-bottom:1px solid var(--ink)}
+.timeline td{padding:.85rem .8rem .85rem 0;border-bottom:1px solid var(--rule);vertical-align:top;font-size:.97rem}
+.timeline td:first-child{font-family:var(--mono);font-size:.78rem;white-space:nowrap;padding-top:1rem}
+.timeline td:nth-child(2){font-family:var(--display);text-transform:uppercase;letter-spacing:.04em;font-size:1.05rem;line-height:1.2;min-width:12rem}
+.timeline td:nth-child(3){font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);white-space:nowrap;padding-top:1rem}
+.live-figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;margin-top:2rem}
+.live-figs figure{margin:0}
+.live-figs img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:grayscale(1)}
+
+/* toolkit */
+.kit{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1rem,3vw,2rem)}
+.kit div{display:grid;gap:.5rem;align-content:start}
+.kit ul{list-style:none;padding:0;margin:0;font-family:var(--mono);font-size:.82rem;line-height:1.5}
+.kit li{padding:.42rem 0;border-bottom:1px dotted var(--rule)}
+.kit li small{display:block;color:var(--ink-soft);font-size:.72rem}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,3rem);align-items:end}
+.contact h2{font-size:clamp(2.6rem,7vw,5rem)}
+.links{display:grid;gap:0;border-top:1px solid var(--ink)}
+.links > *{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--rule);text-decoration:none;flex-wrap:wrap}
+.links .k{font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-size:1.15rem}
+.links .v{font-family:var(--mono);font-size:.8rem;overflow-wrap:anywhere;min-width:0}
+.copy{font-family:var(--mono);font-size:.72rem;background:none;border:1px solid var(--ink);color:var(--ink);padding:.3rem .6rem;cursor:pointer;border-radius:2px}
+.copy:hover{background:var(--ink);color:var(--paper)}
+footer{border-top:1px solid var(--rule);padding-block:1.6rem 2.4rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+
+@media (max-width:900px){
+  .hero,.two,.sec-head,.contact{grid-template-columns:minmax(0,1fr)}
+  .places{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .places div:not(:nth-child(3n+1)){padding-left:0;border-left:0}
+  .places div:nth-child(2n){padding-left:1.1rem;border-left:1px solid var(--rule)}
+  .comps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .steps li{grid-template-columns:3.2rem minmax(0,1fr)}
+  .steps .spec{grid-column:2}
+  .kit,.releases{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .disc{right:8px}
+}
+@media (max-width:560px){
+  .places,.comps,.kit,.releases,.selections,.figs{grid-template-columns:minmax(0,1fr)}
+  .places div:nth-child(2n){padding-left:0;border-left:0}
+  .thinkers li{grid-template-columns:minmax(0,1fr);gap:.3rem}
+  .layers{grid-template-columns:7.2rem minmax(0,1fr)}
+  .layers-key small{display:none}
+  .mosaic{grid-template-columns:1fr 1fr}
+  .mosaic .big{grid-column:span 2;grid-row:auto}
+  .live-figs{grid-template-columns:1fr 1fr}
+  .live-figs figure:last-child{display:none}
+  .nav{position:static}
+  .nav ul{gap:.3rem .9rem}
+  .nav ul a{font-size:.85rem}
+}
+</style>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="mark" href="#top">SIDERΛ VISUS</a>
+    <ul>
+      <li><a href="#practice">Practice</a></li>
+      <li><a href="#ecos">Ecos del Agua</a></li>
+      <li><a href="#releases">Releases</a></li>
+      <li><a href="#live">Live</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+
+  <header class="hero">
+    <div>
+      <h1 class="hero-title">Sider<span class="lam">Λ</span><br>Visus</h1>
+      <p class="hero-name">Néstor Paredes Ulloa</p>
+      <ul class="disciplines">
+        <li>Sound art</li>
+        <li>Soundscape composition</li>
+        <li>Acousmatic production</li>
+        <li>Experimental electronic music</li>
+      </ul>
+    </div>
+    <figure class="hero-fig">
+      <img src="assets/img/hero.jpg" alt="The artist kneeling on a dark sand beach beside recording equipment, with sea stacks behind him" width="1095" height="730">
+      <figcaption>Field recording on the Cobquecura coast, Ñuble, Chile</figcaption>
+      <a class="disc" href="https://sideravisusmusic.bandcamp.com" target="_blank" rel="noopener"><span><b>Listen</b>Bandcamp</span></a>
+    </figure>
+  </header>
+
+  <div class="layers" aria-label="A coastal recording separated into four listening layers">
+    <div class="layers-key">
+      <div><b>Wind on stone</b><small>natural high-pass</small></div>
+      <div><b>Surf</b><small>broadband · hidden fundamentals</small></div>
+      <div><b>Birds</b><small>granular · azimuth in motion</small></div>
+      <div><b>Drone in D</b><small>synth · handpan above</small></div>
+    </div>
+    <canvas id="layers" aria-hidden="true"></canvas>
+  </div>
+  <p class="label layers-cap">One territory, four layers: the first compositional gesture is separating what the place sounds as a whole</p>
+
+  <section id="practice" style="border-top:0">
+    <div class="sec-head">
+      <div>
+        <span class="label">Practice</span>
+        <h2>Field recording &amp; sound design</h2>
+      </div>
+      <div class="prose">
+        <p>Sidera Visus is the sound art project of Néstor Paredes Ulloa, an anthropologist and sound artist working from southern Chile at the meeting point of territory, listening and materiality. Each work begins with soundscapes and field recordings gathered in a specific place: a coastal wetland, a sea cave, a river basin, a native forest reserve. Living and inert elements such as water, wind, birds and stone become context and compositional matter at once.</p>
+        <p>The practice joins sound with the hand. Illustration, cyanotype and hydrolysis printmaking on metal plates meet installation and multichannel sound, and each piece activates a landscape as a physical, temporal and affective presence in the room.</p>
+        <p>Composition grows from continuous research into experimental synthesis and sound design as a way of working with the unstable, the organic and the unpredictable. Space, echo, repetition and slow mutation, carried over from the philosophy of dub techno, are the working tools. Sound and silence move together as a material that breathes, shifts and leaves traces, and the pieces unfold in drift, suspension and expanded time.</p>
+        <p>The aim is to hear how a place speaks through its textures, rhythms and residues, and to carry that listening into works that combine observation, intervention and poetics. Exhibiting or releasing a piece makes the territory resonate, with its memories and its slow transformations.</p>
+      </div>
+    </div>
+
+    <div class="two" style="margin-top:clamp(2.5rem,6vw,4rem)">
+      <div class="figs">
+        <figure><img src="assets/img/plates.jpg" alt="Metal plates with drawn lines, connected to electrodes for hydrolysis etching" loading="lazy" width="1200" height="900"><figcaption>Hydrolysis printmaking: electrodes on etched plates</figcaption></figure>
+        <figure><img src="assets/img/woodcut-erosion.jpg" alt="Woodcut print of a seed head in black and gold lines" loading="lazy" width="786" height="1126"><figcaption><em>Lucha contra la erosión del suelo</em>, Sidera Visus, 2026</figcaption></figure>
+        <figure class="bw"><img src="assets/img/wave.jpg" alt="A wave breaking over a concrete wall, with a recorder in the foreground" loading="lazy" width="1200" height="900"><figcaption>Recorder at the waterline</figcaption></figure>
+        <figure><img src="assets/img/notebook.jpg" alt="Handwritten field notebook page with sketches of rocks and notes on synthesis" loading="lazy" width="414" height="632"><figcaption>Field notebook, Santa Rita cave session</figcaption></figure>
+      </div>
+      <div class="stack">
+        <div class="prose">
+          <span class="label">Trajectory</span>
+          <p>The project rests on eleven years of territorial work as an anthropologist in urban, rural and Indigenous contexts of southern Chile, through qualitative studies, data science and publications. Alongside that research ran a creative path in writing and sonic experimentation where sensory ethnography, literature and sound art converge.</p>
+          <p>Sound here is an aesthetic phenomenon, a form of situated knowledge, a means of cultural transmission and a way to tell stories that are hidden or under threat. Listening works as anthropological method, poetic gesture and heritage record.</p>
+          <p>Sidera Visus formed in May 2019 in Chillán, Ñuble. Its language moved from meditative work with Indian sitar, Persian setar, winds and tabla toward analog synthesizers, samplers and field recording, and settled into a fusion of minimalist ambience, electroacoustics and acoustic poetry, always in dialogue with social, political and territorial realities.</p>
+        </div>
+        <ul class="thinkers">
+          <li><b>Steven Feld<small>acoustemology</small></b><p>Sound as relational knowledge between a community and its environment.</p></li>
+          <li><b>R. Murray Schafer<small>acoustic ecology</small></b><p>Soundscapes as cultural and environmental heritage to be kept.</p></li>
+          <li><b>Tim Ingold<small>anthropology of making</small></b><p>Recording and composing as co-fabrication with a place and the people who inhabit it.</p></li>
+          <li><b>Hildegard Westerkamp<small>comparative listening</small></b><p>Weeks of listening before describing, and the question of which sound marks give a place its acoustic identity. From her comes the distinction between noise that isolates and noise that expresses community.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="ecos">
+    <div class="sec-head">
+      <div>
+        <span class="label">Featured work · 2024–2026</span>
+        <h2>Ecos del Agua</h2>
+        <p class="label" style="margin-top:.9rem">Woodcut and soundscape for Cobquecura<br>Fondart Regional, Artistic Creation 2026 · Folio 828015</p>
+      </div>
+      <div class="stack">
+        <blockquote class="quote" style="margin:0">It all began with the wind. The wind hammering against the stone church in Cobquecura. In my notebook I wrote down “sound wall.”<cite class="label">Production notes</cite></blockquote>
+        <div class="prose">
+          <p>An interdisciplinary project with printmaker María José Sepúlveda. Sidera Visus recorded the soundscapes of the Taucú wetland and the Cobquecura coast in Ñuble and composed soundscape pieces from them, each paired with a woodcut and a point on an interactive sound map. The works meet in an ephemeral installation with public, inclusive access, shown at the Museo de la Gráfica in Chillán, the Museo de Cobquecura and the Salón Municipal de Cobquecura.</p>
+          <p>Within a few kilometres of coast the recordings revealed six or seven distinct acoustic environments, each asking for its own decisions: where to place the microphone, how long to stay still, which frequencies to clean and which to leave rough.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="places" style="margin-top:clamp(2rem,5vw,3rem)">
+      <div><h3>Stone church</h3><p>A resonance box. Air compresses against the rock wall and behaves like a natural high-pass filter.</p></div>
+      <div><h3>Santa Rita cave</h3><p>Dark and territorial. Bats, shadow, a close acoustic of stone.</p></div>
+      <div><h3>Taucú wetland</h3><p>Humid, intimate. Still water between rocks, birds close to the microphone, recorded from a kayak.</p></div>
+      <div><h3>La Lobería</h3><p>A citadel struck by waves and wind, with its own pulse and distant guttural cries.</p></div>
+      <div><h3>Comulyao</h3><p>Humidity, native birds, cormorants.</p></div>
+      <div><h3>Summer night</h3><p>Owls and crickets in a warm chorus over the sea.</p></div>
+    </div>
+
+    <div style="margin-top:clamp(3rem,7vw,4.5rem)">
+      <span class="label">Method</span>
+      <h2 style="margin:.6rem 0 1.4rem">From the shore to the speaker array</h2>
+      <ol class="steps">
+        <li>
+          <div><h3>Record</h3><p>Recording in 32-bit float to keep the full dynamic range. Sometimes the Ableton Move is plugged into a microphone on site to fuse the environment with layers of synthesis right there; sometimes the handpan marks rhythms, pauses and melodies. Composing with wet feet.</p></div>
+          <div class="spec"><span>Zoom H6 Essentials</span><span>32-bit float</span><span>Ableton Move · handpan</span></div>
+        </li>
+        <li>
+          <div><h3>Separate</h3><p>Back in the studio each recording is divided by frequency range, isolation and noise cleanup: water from wind, birds from surf, low end from general ambience. Choosing figure and ground in a soundscape is already intentional listening, and it is the first compositional gesture.</p></div>
+          <div class="spec"><span>Adobe Audition</span><span>Spectral view · DeNoise · DeHum</span></div>
+        </li>
+        <li>
+          <div><h3>Granulate &amp; filter</h3><p>Granular synthesis over birdsong, species identified afterwards from calls, photographs and georeferenced notes with iNaturalist. High- and low-pass filters with oscillating LFOs over the water, sidechain tied to the wind envelope, dub delay on the last note of a call. Every effect answers something already present in the recording.</p></div>
+          <div class="spec"><span>Granulator III · own presets</span><span>Korg Kaoss Pad</span><span>iNaturalist.org</span></div>
+        </li>
+        <li>
+          <div><h3>Extend</h3><p>The water of Cobquecura carries recurring fundamentals, as if the place had its own tuning. Synth pads amplify partials hidden in the broadband noise of the sea. Chords appear as ghosts that fade into long reverb and return processed, turning in modal circles such as Dm, C, G, Dm without coming to rest, like the waves. The ronroco anchors; the handpan in Celtic D minor opens space above a drone on D.</p></div>
+          <div class="spec"><span>Arturia MicroFreak</span><span>Korg Wavestate</span><span>Electribe Sampler 2 · Hacktribe FM</span><span>Chorus Ensemble › Erosion › Reverb › Limiter</span></div>
+        </li>
+        <li>
+          <div><h3>Spatialize</h3><p>Every track runs through a source panner on a sphere with height and distance. Water holds the front as the horizon. Ronroco and handpan stay centred, the body entering the landscape. Granulated bird phrases cross behind the listener, entering on one side and leaving on the other. A decoder sets how many speakers the same composition lives in for each venue.</p>
+            <div class="speakers"><span>2.0 · Museo de la Gráfica, Chillán</span><span>4 front + 4 rear · Mainz</span><span>4.1 · Santiago</span><span>Full ambisonic · Valdivia</span></div>
+          </div>
+          <div class="spec"><span>Envelop for Live (E4L)</span><span>Third-order ambisonics</span><span>Source Panner per track</span></div>
+        </li>
+      </ol>
+      <figure class="strip" style="margin-inline:0"><img src="assets/img/ableton-session.jpg" alt="Ableton Live session with spectrum analyser and effect chain" loading="lazy" width="1400" height="186"><figcaption>Studio session: spectrum and effect chain in Ableton Live 12</figcaption></figure>
+    </div>
+
+    <div style="margin-top:clamp(3rem,7vw,4.5rem)">
+      <span class="label">Compositions</span>
+      <div class="comps" style="margin-top:1rem">
+        <div><span class="num">I</span><p>Instrumental, closest to pure composition.</p></div>
+        <div><span class="num">II</span><p>The humidity of Comulyao: native birds, harmonic textures, cormorants with tremolo auto-pan.</p></div>
+        <div><span class="num">III</span><p>Open field facing the coast: birds, waves, cows, a southern lapwing at the water’s edge.</p></div>
+        <div><span class="num">IV</span><p>Santa Rita: the cave, the shadow, the bats.</p></div>
+        <div><span class="num">VI</span><p>Night and the sea: owls and summer crickets.</p></div>
+      </div>
+    </div>
+
+    <div class="two" style="margin-top:clamp(3rem,7vw,4.5rem)">
+      <div class="mosaic">
+        <figure class="big"><img src="assets/img/taucu-swan.jpg" alt="A black-necked swan alone on still water in the Taucú wetland at dusk" loading="lazy" width="1400" height="933"></figure>
+        <figure><img src="assets/img/exhibition-2.jpg" alt="Visitor listening on headphones beside a large woodcut" loading="lazy" width="432" height="432"></figure>
+        <figure><img src="assets/img/santa-rita.jpg" alt="Rock arch of the Santa Rita cave above a sandy beach" loading="lazy" width="647" height="643"></figure>
+        <figure><img src="assets/img/installation.jpg" alt="Children gathered around the installation's sound map" loading="lazy" width="308" height="301"></figure>
+        <figure><img src="assets/img/exhibition-1.jpg" alt="Visitor with headphones at the exhibition" loading="lazy" width="432" height="432"></figure>
+      </div>
+      <div class="stack">
+        <div class="aside-note">
+          <span class="label">Taucú, from a kayak</span>
+          <p>A swan stayed alone and motionless on the calm water. The note in the margin, beside a sketch of harmonic progressions in D minor: “it looks like the swan’s mate died (they mate for life).” Half ornithology, half feeling. The work asks for a listening that registers frequencies and also what those frequencies do to the body standing there, cold, shoes wet, waiting for the wind to drop so the take stays clean.</p>
+        </div>
+        <div class="prose">
+          <span class="label">Installation</span>
+          <p>Exciter transducers on metal plates etched by electrolysis, cymatics, and an interactive sound map whose digital audio decoders feed a self-built mixer. Each device answers one question: how a visitor who has never been to Cobquecura can feel the place passing through the body as well as the ears.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="releases">
+    <div class="sec-head" style="margin-bottom:clamp(2rem,5vw,3rem)">
+      <div><span class="label">Discography</span><h2>Releases</h2></div>
+      <p class="prose">Published on Bandcamp and SoundCloud. Each record grows from the soundscapes of one territory in southern Chile.</p>
+    </div>
+    <div class="releases">
+      <article class="rel">
+        <img src="assets/img/cover-ecos-del-agua.jpg" alt="Cover of Ecos del Agua: a red record label floating over a beach with a microphone on a tripod" loading="lazy" width="840" height="840">
+        <div class="meta"><span>LP · 6 tracks</span><span>2026</span></div>
+        <h3>Ecos del Agua</h3>
+        <p>Six soundscape compositions from the coast of Cobquecura, built with granular synthesis, sampling, sequential synthesis and study of the ronroco.</p>
+      </article>
+      <article class="rel">
+        <img src="assets/img/cover-compositio-silvae.jpg" alt="Cover of COmpositio Silvae: a green disc among fern fronds" loading="lazy" width="840" height="840">
+        <div class="meta"><span>LP · 7 tracks</span><span>2023–2024</span></div>
+        <h3>COmpositio Silvae</h3>
+        <p>Recordings from a creative retreat between 2019 and 2023, with three previously unreleased tracks. Produced in Los Ángeles, Biobío.</p>
+      </article>
+      <article class="rel">
+        <img src="assets/img/cover-te-de-bosque.jpg" alt="Cover of Té de bosque: a grey disc against dense forest" loading="lazy" width="840" height="840">
+        <div class="meta"><span>EP</span><span>2022</span></div>
+        <h3>Té de bosque</h3>
+        <p>Composed from soundscapes of the Cerro Ñielol National Reserve in Temuco, with sampling, subtractive and sequential synthesis on the Korg Wavestate, and ethnic instruments.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="selections">
+    <div class="sec-head" style="margin-bottom:clamp(2rem,5vw,3rem)">
+      <div><span class="label">2026</span><h2>International selections</h2></div>
+      <div></div>
+    </div>
+    <div class="selections">
+      <div class="sel">
+        <span class="label">13–15 November 2026</span>
+        <span class="where">Milan, Italy</span>
+        <p><em>La Iglesia de Piedra</em>, selected for the Acousmatic Listening Room of the NOIS//E Festival and Symposium.</p>
+      </div>
+      <div class="sel">
+        <span class="label">October 2026</span>
+        <span class="where">Montevideo, Uruguay</span>
+        <p>LP <em>Ecos del Agua</em>, selected for the EUM programme, an open call curated by Lukas Kühne, Fabrice Lengronne and Pol Villasuso.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="live">
+    <div class="sec-head" style="margin-bottom:clamp(2rem,5vw,3rem)">
+      <div><span class="label">2015 – 2026</span><h2>Live &amp; workshops</h2></div>
+      <p class="prose">Live sets are built in Ableton’s Session View, transforming field material, synthesis and granular layers in real time.</p>
+    </div>
+    <div class="tl-wrap">
+      <table class="timeline">
+        <thead><tr><th scope="col">Date</th><th scope="col">Event</th><th scope="col">Place</th><th scope="col">Description</th></tr></thead>
+        <tbody>
+          <tr><td>2026</td><td>Ecos del Agua</td><td>Cobquecura · Chillán</td><td>Sound artist of the Fondart project. Exhibitions at the Museo de la Gráfica, Museo de Cobquecura and Salón Municipal de Cobquecura.</td></tr>
+          <tr><td>2026</td><td>Workshop: Introduction to soundscape</td><td>Cobquecura</td><td>Theory and practice of soundscape and sound composition, with field capture on the coastline and editing in the classroom.</td></tr>
+          <tr><td>2026</td><td>Workshop: Music production with Ableton Live</td><td>Cobquecura</td><td>Five-hour introduction to independent music production.</td></tr>
+          <tr><td>May 2026</td><td>Town Session, Electronic Music Gathering</td><td>Mulchén</td><td>Live set of fifteen original tracks with synthesizers, sampling and granular synthesis of soundscapes.</td></tr>
+          <tr><td>Feb 2026</td><td>Electrónica y Escombros vol. III</td><td>Mulchén</td><td>Real-time improvisation with synthesizers and groovebox: subtractive low layers, granular synthesis over bird recordings and territorial ambiences from the Los Lagos region.</td></tr>
+          <tr><td>Feb 2025</td><td>Electrónica y Escombros vol. II</td><td>Mulchén</td><td>Live set reworking tempo, effects and chords from <em>COmpositio Silvae</em> and <em>Té de bosque</em>.</td></tr>
+          <tr><td>2024–2025</td><td>Jam sessions with Nodo Infinito</td><td>Los Ángeles</td><td>Monthly sessions with the collective, centred on experimental synthesis, sampling and acousmatic practice.</td></tr>
+          <tr><td>2017–2018</td><td>Carnatic music workshops</td><td>Chillán</td><td>Talks on ethnic instruments and the Carnatic tradition with Prof. Iván Jadresic, closing with a jam session.</td></tr>
+          <tr><td>2017–2018</td><td>Sound therapy sessions</td><td>Chillán</td><td>Sound relaxation with Tibetan bowls, sitar and ethnic instruments.</td></tr>
+          <tr><td>2016–2018</td><td>Carnaval Cultural Fundación Daya, Ecoferia, Eco Yoga Fest</td><td>Chillán</td><td>Synth live sets and jam sessions with sitar and synthesizers at public events.</td></tr>
+          <tr><td>2015–2016</td><td>Tripantu Fest</td><td>Biobío · Maule</td><td>Jam sessions with synthesizers and ethnic instruments with the band Chacruna.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="live-figs">
+      <figure><img src="assets/img/live-2.jpg" alt="Performing a live set at a synthesizer table in front of an audience" loading="lazy" width="502" height="502"><figcaption>Live set, Mulchén</figcaption></figure>
+      <figure><img src="assets/img/live-1.jpg" alt="Two musicians at a table of synthesizers and laptops" loading="lazy" width="599" height="599"><figcaption>Session with Nodo Infinito</figcaption></figure>
+      <figure><img src="assets/img/workshop.jpg" alt="Workshop participants in a classroom facing a projection" loading="lazy" width="425" height="368"><figcaption>Workshop, Cobquecura</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="toolkit">
+    <div class="sec-head" style="margin-bottom:clamp(2rem,5vw,3rem)">
+      <div><span class="label">Since 2012</span><h2>Toolkit</h2></div>
+      <p class="prose">Self-taught in production and sound design since Ableton Live 8 in 2012, with Ableton as the centre of composition and performance ever since.</p>
+    </div>
+    <div class="kit">
+      <div><h3>Field</h3><ul>
+        <li>Zoom H6 Essentials<small>32-bit float recording</small></li>
+        <li>Ableton Move<small>synthesis on site, mic direct</small></li>
+        <li>Handpan<small>Celtic D minor</small></li>
+        <li>Ronroco<small>to anchor the composer in the landscape</small></li>
+      </ul></div>
+      <div><h3>Studio</h3><ul>
+        <li>Ableton Live 12<small>granular &amp; wavetable synthesis, Max for Live, warping</small></li>
+        <li>Envelop for Live<small>third-order ambisonic composition</small></li>
+        <li>Adobe Audition<small>spectral repair, DeNoise, DeHum, mastering</small></li>
+      </ul></div>
+      <div><h3>Instruments</h3><ul>
+        <li>Korg Wavestate<small>wave sequencing</small></li>
+        <li>Arturia MicroFreak<small>pads extending the water’s partials</small></li>
+        <li>Korg Electribe Sampler 2<small>Hacktribe FM, dub chords</small></li>
+        <li>Korg Kaoss Pad<small>sampling and live effects</small></li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact">
+      <div>
+        <span class="label">Contact</span>
+        <h2 style="margin-top:.6rem">Listen,<br>write, invite</h2>
+        <p class="prose" style="margin-top:1rem">Open to festivals, residencies, listening rooms, installations and collaborations around soundscape and territory.</p>
+      </div>
+      <div class="links">
+        <div><span class="k">Email</span><span class="v" id="mail">sideravisus.artmusic@gmail.com</span><button class="copy" id="copyMail" type="button">Copy</button></div>
+        <a href="https://sideravisusmusic.bandcamp.com" target="_blank" rel="noopener"><span class="k">Bandcamp</span><span class="v">sideravisusmusic.bandcamp.com ↗</span></a>
+        <a href="https://soundcloud.com/sideravisuschile" target="_blank" rel="noopener"><span class="k">SoundCloud</span><span class="v">soundcloud.com/sideravisuschile ↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="label">Sidera Visus · Néstor Paredes Ulloa</span>
+    <span class="label">Los Ángeles, Biobío, Chile</span>
+  </footer>
+</main>
+
+<script>
+(function(){
+  // copy email
+  var b=document.getElementById('copyMail'), m=document.getElementById('mail');
+  b.addEventListener('click',function(){
+    var t=m.textContent;
+    function sel(){var r=document.createRange();r.selectNodeContents(m);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';}
+    try{navigator.clipboard.writeText(t).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1800)},sel)}catch(e){sel()}
+  });
+
+  // layer strip: four bands of one coastal recording
+  var c=document.getElementById('layers'); if(!c) return;
+  var ctx=c.getContext('2d'), reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W,H,dpr;
+  function size(){dpr=Math.min(window.devicePixelRatio||1,2);var r=c.getBoundingClientRect();W=r.width;H=r.height;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+  function tok(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+  // deterministic noise
+  var seed=7;function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647}
+  var grains=[];for(var i=0;i<46;i++)grains.push({x:rnd(),w:.004+rnd()*.018,a:.3+rnd()*.7,f:20+rnd()*40});
+  function draw(t){
+    ctx.clearRect(0,0,W,H);
+    var ink=tok('--ink'),soft=tok('--ink-soft'),sig=tok('--signal'),rule=tok('--rule');
+    var band=H/4;
+    ctx.strokeStyle=rule;ctx.lineWidth=1;ctx.setLineDash([1,3]);
+    for(var k=1;k<4;k++){ctx.beginPath();ctx.moveTo(0,band*k+.5);ctx.lineTo(W,band*k+.5);ctx.stroke()}
+    ctx.setLineDash([]);
+    var s=t*0.00025;
+    // 1 wind on stone: thin fast hatch, high-passed
+    ctx.strokeStyle=soft;ctx.lineWidth=1;ctx.beginPath();
+    for(var x=0;x<W;x+=2){var y=band*.5+Math.sin(x*.21+s*9)*Math.sin(x*.013+s)*band*.22*(.6+.4*Math.sin(x*.002+s*.7));x?ctx.lineTo(x,y):ctx.moveTo(x,y)}
+    ctx.stroke();
+    // 2 surf: broadband envelope swelling like waves
+    ctx.fillStyle=ink;ctx.globalAlpha=.85;
+    for(var x2=0;x2<W;x2+=3){var env=Math.pow(Math.max(0,Math.sin(x2*.006-s*3)),2)*.75+.12;var h=env*band*.42*(.55+.45*Math.sin(x2*1.7+s*40));ctx.fillRect(x2,band*1.5-h,1.4,h*2)}
+    ctx.globalAlpha=1;
+    // 3 birds: grains drifting across, signal colour
+    ctx.fillStyle=sig;
+    grains.forEach(function(g){var gx=((g.x+s*.6*(.5+g.a))%1)*W, gw=g.w*W;for(var j=0;j<gw;j+=2){var hh=Math.sin(j/gw*Math.PI)*band*.32*g.a*Math.abs(Math.sin(j*.9+g.f));ctx.fillRect(gx+j,band*2.5-hh,1.2,hh*2)}});
+    // 4 drone in D: slow sine with handpan strikes
+    ctx.strokeStyle=ink;ctx.lineWidth=1.6;ctx.beginPath();
+    for(var x3=0;x3<W;x3+=2){var y3=band*3.5+Math.sin(x3*.018+s*2)*band*.12;x3?ctx.lineTo(x3,y3):ctx.moveTo(x3,y3)}
+    ctx.stroke();
+    ctx.fillStyle=ink;
+    for(var p=0;p<7;p++){var px=((p/7+s*.08)%1)*W;var r=3+2*Math.abs(Math.sin(p*2.3));ctx.beginPath();ctx.arc(px,band*3.5-band*.26,r,0,6.283);ctx.fill()}
+  }
+  function loop(t){draw(t);if(!reduce)requestAnimationFrame(loop)}
+  size();addEventListener('resize',function(){size();if(reduce)draw(4000)});
+  try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){if(reduce)draw(4000)})}catch(e){}
+  reduce?draw(4000):requestAnimationFrame(loop);
+})();
+</script>
